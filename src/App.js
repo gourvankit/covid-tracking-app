@@ -6,9 +6,11 @@ import Header from "./components/Navbar/Navbar";
 import Login from "./components/Login/Login";
 import News from "./components/News/News";
 import Volunteer from "./components/Volunteer/Volunteer";
+import Register from "./components/Register/Register";
 import NGOhomepage from "./components/NGO/NGOhomepage";
-import eventList from "./components/EventList/eventList";
-import Buttons from './components/Buttons/Buttons';
+import CreateEvent from "./components/createEvent/CreateEvent";
+import EventList from "./components/EventList/EventList";
+import Buttons from "./components/Buttons/Buttons";
 import {
   BrowserRouter,
   Router,
@@ -101,7 +103,7 @@ const App = () => {
     navigate("/news");
   };
   const volunteer = () => {
-    navigate("/volunteer");
+    navigate("/EventList");
   };
   const eventList = () => {
     navigate("/eventList");
@@ -129,17 +131,19 @@ const App = () => {
                   home={homeHandler}
                   volunteer={volunteer}
                 />
-                <Dashboard
-                  country={country}
-                  countries={countries}
-                  countryInfo={countryInfo}
-                  onCountryChange={onCountryChange}
-                  tableData={tableData}
-                  flag={flag}
-                  mapCenter={mapCenter}
-                  zoom={zoom}
-                  mapCountries={mapCountries}
-                />
+                <div>
+                  <Dashboard
+                    country={country}
+                    countries={countries}
+                    countryInfo={countryInfo}
+                    onCountryChange={onCountryChange}
+                    tableData={tableData}
+                    flag={flag}
+                    mapCenter={mapCenter}
+                    zoom={zoom}
+                    mapCountries={mapCountries}
+                  />
+                </div>
               </>
             )
           }
@@ -170,6 +174,7 @@ const App = () => {
             )
           }
         ></Route>
+        <Route path="/EventList" element={<EventList />}></Route>
         <Route
           path="/newUser"
           element={loggedIn ? <NewUser /> : <Login login={loginHandler} />}
@@ -185,9 +190,10 @@ const App = () => {
                   eventList={eventList}
                   checkNews={newsHandler1}
                   home={homeHandler}
-                  listEvents = {eventList}
+                  listEvents={eventList}
                 />
-                <Buttons/>
+
+                <Buttons />
                 <Dashboard
                   country={country}
                   countries={countries}
@@ -196,6 +202,38 @@ const App = () => {
                   tableData={tableData}
                   flag={flag}
                 />
+              </>
+            ) : (
+              <Login login={loginHandler} />
+            )
+          }
+        ></Route>
+        <Route
+          path="/Register"
+          element={
+            loggedIn ? (
+              <>
+                <Register />
+              </>
+            ) : (
+              <Login login={loginHandler} />
+            )
+          }
+        ></Route>
+        <Route
+          path="/createEvent"
+          element={
+            loggedIn ? (
+              <>
+                <Header
+                  logout={logoutHandler}
+                  // addNew={newUser}
+                  eventList={eventList}
+                  checkNews={newsHandler1}
+                  home={homeHandler}
+                  listEvents={eventList}
+                />
+                <CreateEvent />
               </>
             ) : (
               <Login login={loginHandler} />

@@ -7,35 +7,32 @@ const header = (props) => {
         Covid Tracker
       </h1>
       <div id="container">
-        { props.volunteer ? (
+        {props.volunteer ? (
           <button className="addBtn" onClick={props.volunteer}>
             Volunteer
           </button>
         ) : (
-          <>
-          </>          
-        )          
-        }
-        { props.eventList ? (
-        <button className="addBtn" onClick={props.listEvents}>
+          <></>
+        )}
+        {props.eventList ? (
+          <button className="addBtn" onClick={props.listEvents}>
             eventList
           </button>
-        ) : (<></>)
-        }
-      
+        ) : (
+          <></>
+        )}
+
         <button className="addBtn" onClick={props.checkNews}>
           Latest News
         </button>
-        {
-          props.addNew ? (
+        {props.addNew ? (
           <button className="addBtn" onClick={props.addNew}>
-            New user
+            Symptom Checker
           </button>
-          ) : (
-            <></>
-          )
-        }
-        
+        ) : (
+          <></>
+        )}
+
         <button className="logoutbtn" onClick={props.logout}>
           Logout
         </button>
